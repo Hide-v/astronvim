@@ -27,7 +27,7 @@ return {
         provider = function()
           local icon = get_os_icon()
           local m = vim.fn.mode(1):sub(1, 1):upper()
-          return icon .. " " .. m
+          return icon .. " " .. m .. "  "
         end,
         padding = { left = 1, right = 2 },
       },
