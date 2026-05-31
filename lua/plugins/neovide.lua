@@ -1,5 +1,19 @@
 if not vim.g.neovide then return {} end
 
+local local_settings = {
+  font_size = 14,
+  scale_factor = 1.0,
+}
+
+local local_config_path = vim.fn.stdpath "config" .. "/lua/local/neovide_local.lua"
+if vim.fn.filereadable(local_config_path) == 1 then
+  local ok, local_cfg = pcall(dofile, local_config_path)
+  if ok and type(local_cfg) == "table" then
+    if local_cfg.font_size then local_settings.font_size = local_cfg.font_size end
+    if local_cfg.scale_factor then local_settings.scale_factor = local_cfg.scale_factor end
+  end
+end
+
 return {
   {
     "AstroNvim/astrocore",
@@ -7,7 +21,7 @@ return {
     opts = {
       options = {
         opt = {
-          guifont = "Maple_Mono_NF_CN:h14",
+          guifont = "Maple_Mono_NF_CN:h" .. local_settings.font_size,
           linespace = 0,
         },
         g = {
