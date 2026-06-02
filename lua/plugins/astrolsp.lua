@@ -10,9 +10,9 @@ return {
   opts = {
     -- Configuration table of features provided by AstroLSP
     features = {
-      codelens = false,      -- enable/disable codelens refresh on start
-      inlay_hints = true,    -- enable/disable inlay hints on start
-      semantic_tokens = true -- enable/disable semantic token highlighting
+      codelens = false, -- enable/disable codelens refresh on start
+      inlay_hints = true, -- enable/disable inlay hints on start
+      semantic_tokens = true, -- enable/disable semantic token highlighting
     },
     -- customize lsp formatting options
     formatting = {
@@ -24,13 +24,13 @@ return {
         },
         ignore_filetypes = { -- disable format on save for specified filetypes
           -- "python",
-        }
+        },
       },
       disabled = { -- disable formatting capabilities for the listed language servers
         -- disable lua_ls formatting capability if you want to use StyLua to format your lua code
         -- "lua_ls",
       },
-      timeout_ms = 1000 -- default format timeout
+      timeout_ms = 1000, -- default format timeout
       -- filter = function(client) -- fully override the default formatting function
       --   return true
       -- end
@@ -46,14 +46,23 @@ return {
       gopls = {
         settings = {
           gopls = {
+            hints = {
+              assignVariableTypes = true,
+              compositeLiteralFields = true,
+              compositeLiteralTypes = true,
+              constantValues = true,
+              functionTypeParameters = true,
+              parameterNames = true,
+              rangeVariableTypes = true,
+            },
             usePlaceholders = true,
             completeUnimported = true,
             analyses = {
-              unusedparams = true
-            }
-          }
-        }
-      }
+              unusedparams = true,
+            },
+          },
+        },
+      },
     },
     -- customize how language servers are attached
     handlers = {
@@ -78,40 +87,35 @@ return {
           event = { "InsertLeave", "BufEnter" },
           -- the rest of the autocmd options (:h nvim_create_autocmd)
           desc = "Refresh codelens (buffer)",
-          callback = function (args)
+          callback = function(args)
             if require("astrolsp").config.features.codelens then vim.lsp.codelens.enable(true, { bufnr = args.buf }) end
-          end
-        }
-      }
+          end,
+        },
+      },
     },
     -- mappings to be set up on attaching of a language server
     mappings = {
       n = {
         -- a `cond` key can provided as the string of a server capability to be required to attach, or a function with `client` and `bufnr` parameters from the `on_attach` that returns a boolean
         gD = {
-          function ()
-            vim.lsp.buf.declaration()
-          end,
+          function() vim.lsp.buf.declaration() end,
           desc = "Declaration of current symbol",
-          cond = "textDocument/declaration"
+          cond = "textDocument/declaration",
         },
         ["<Leader>uY"] = {
-          function ()
-            require("astrolsp.toggles").buffer_semantic_tokens()
-          end,
+          function() require("astrolsp.toggles").buffer_semantic_tokens() end,
           desc = "Toggle LSP semantic highlight (buffer)",
-          cond = function (client)
+          cond = function(client)
             return client:supports_method "textDocument/semanticTokens/full" and vim.lsp.semantic_tokens ~= nil
-          end
-        }
-      }
+          end,
+        },
+      },
     },
     -- A custom `on_attach` function to be run after the default `on_attach` function
     -- takes two parameters `client` and `bufnr`  (`:h lsp-attach`)
-    on_attach = function (client, bufnr)
+    on_attach = function(client, bufnr)
       -- this would disable semanticTokensProvider for all clients
       -- client.server_capabilities.semanticTokensProvider = nil
-
-    end
-  }
+    end,
+  },
 }
