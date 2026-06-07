@@ -10,8 +10,8 @@ return {
         },
         n = {
           ["<C-/>"] = { "<Cmd>ToggleTerm<CR>", desc = "Toggle Terminal" },
-          ["<C-d>"] = { "10j" },
-          ["<C-u>"] = { "10k" },
+          ["<C-d>"] = { "10jzz" },
+          ["<C-u>"] = { "10kzz" },
         },
         t = {
           ["<C-/>"] = { "<Cmd>ToggleTerm<CR>", desc = "Toggle Terminal" },
