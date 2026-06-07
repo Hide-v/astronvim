@@ -7,7 +7,6 @@ return {
   "AstroNvim/astrocommunity",
   { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.icon.mini-icons" },
-  { import = "astrocommunity.editing-support.multicursors-nvim" },
   { import = "astrocommunity.recipes.vscode" },
   { import = "astrocommunity.editing-support.auto-save-nvim" },
   -- import/override with your plugins folder
