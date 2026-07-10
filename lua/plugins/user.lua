@@ -31,4 +31,22 @@ return {
       })
     end,
   },
+
+  {
+    "akinsho/toggleterm.nvim",
+    version = "*",
+    config = function(_, opts)
+      opts.size = function(term)
+        if term.direction == "horizontal" then
+          return 20
+        elseif term.direction == "vertical" then
+          return vim.o.columns * 0.4
+        end
+      end
+
+      opts.persist_size = false
+
+      require("toggleterm").setup(opts)
+    end,
+  },
 }
