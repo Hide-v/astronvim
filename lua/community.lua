@@ -10,5 +10,7 @@ return {
   { import = "astrocommunity.icon.mini-icons" },
   { import = "astrocommunity.recipes.vscode" },
   { import = "astrocommunity.editing-support.auto-save-nvim" },
+  { import = "astrocommunity.pack.rust" },
+  { import = "astrocommunity.code-runner.overseer-nvim" },
   -- import/override with your plugins folder
 }
