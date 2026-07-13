@@ -25,6 +25,7 @@ return {
           linespace = 0,
         },
         g = {
+          neovide_theme = "auto",
           -- 透明度与间距
           neovide_opacity = 0.85,
           neovide_scale_factor = 1.0,
