@@ -6,7 +6,8 @@ return {
     local utils = require "astrocore"
     return utils.extend_tbl(opts, {
       lsp = {
-        -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+        hover = { enabled = true },
+        signature = { enabled = true },
         override = {
           ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
           ["vim.lsp.util.stylize_markdown"] = true,
@@ -14,11 +15,11 @@ return {
         },
       },
       presets = {
-        bottom_search = true, -- use a classic bottom cmdline for search
-        command_palette = true, -- position the cmdline and popupmenu together
-        long_message_to_split = true, -- long messages will be sent to a split
-        inc_rename = utils.is_available "inc-rename.nvim", -- enables an input dialog for inc-rename.nvim
-        lsp_doc_border = false, -- add a border to hover docs and signature help
+        bottom_search = true,
+        command_palette = true,
+        long_message_to_split = true,
+        inc_rename = utils.is_available "inc-rename.nvim",
+        lsp_doc_border = false,
       },
     })
   end,
@@ -37,16 +38,12 @@ return {
       ---@param opts AstroLSPOpts
       opts = function(_, opts)
         local noice_opts = require("astrocore").plugin_opts "noice.nvim"
-        -- disable the necessary handlers in AstroLSP (v6 uses vim.lsp.config)
-        if not opts.config then opts.config = {} end
-        if not opts.config["*"] then opts.config["*"] = {} end
+        if not opts.defaults then opts.defaults = {} end
         if vim.tbl_get(noice_opts, "lsp", "hover", "enabled") ~= false then
-          opts.config["*"].handlers = opts.config["*"].handlers or {}
-          opts.config["*"].handlers["textDocument/hover"] = false
+          opts.defaults.hover = false
         end
         if vim.tbl_get(noice_opts, "lsp", "signature", "enabled") ~= false then
-          opts.config["*"].handlers = opts.config["*"].handlers or {}
-          opts.config["*"].handlers["textDocument/signatureHelp"] = false
+          opts.defaults.signature_help = false
           if not opts.features then opts.features = {} end
           opts.features.signature_help = false
         end
