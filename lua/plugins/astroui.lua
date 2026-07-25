@@ -8,8 +8,8 @@ return {
   "AstroNvim/astroui",
   ---@type AstroUIOpts
   opts = {
-    -- change colorscheme
-    colorscheme = "catppuccin",
+    -- change colorscheme (catppuccin-nvim because Neovim v0.12+ has built-in catppuccin)
+    colorscheme = "catppuccin-nvim",
     -- AstroUI allows you to easily modify highlight groups easily for any and all colorschemes
     highlights = {
       init = { -- this table overrides highlights in all themes

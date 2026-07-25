@@ -57,7 +57,7 @@ return {
         system = params.system,
       },
 
-      on_init = function(self, task) self.start_time = vim.loop.hrtime() end,
+      on_init = function(self, task) self.start_time = vim.uv.hrtime() end,
 
       on_complete = function(self, task, status)
         if not lookup[status] then return end
@@ -69,7 +69,7 @@ return {
 
         local elapsed = 0
 
-        if self.start_time then elapsed = (vim.loop.hrtime() - self.start_time) / 1e9 end
+        if self.start_time then elapsed = (vim.uv.hrtime() - self.start_time) / 1e9 end
 
         local level = util.status_to_log_level(status)
 
