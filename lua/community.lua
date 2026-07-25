@@ -10,6 +10,7 @@ return {
   { import = "astrocommunity.icon.mini-icons" },
   { import = "astrocommunity.recipes.vscode" },
   { import = "astrocommunity.editing-support.auto-save-nvim" },
+  { import = "astrocommunity.motion.nvim-spider" },
   { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.pack.markdown" },
   { import = "astrocommunity.code-runner.overseer-nvim" },
