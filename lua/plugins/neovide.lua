@@ -21,10 +21,15 @@ return {
     opts = {
       options = {
         opt = {
-          guifont = "Maple_Mono_NF_CN:h" .. local_settings.font_size,
+          guifont = "Maple Mono NF CN:h" .. local_settings.font_size .. ":i",
           linespace = 0,
         },
         g = {
+          neovide_font_features = {
+            "calt",
+            "liga",
+          },
+
           neovide_theme = "auto",
           -- 透明度与间距
           neovide_opacity = 0.85,
