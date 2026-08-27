@@ -11,6 +11,7 @@ return {
   { import = "astrocommunity.recipes.vscode" },
   { import = "astrocommunity.editing-support.auto-save-nvim" },
   { import = "astrocommunity.pack.rust" },
+  { import = "astrocommunity.pack.cs" },
   { import = "astrocommunity.pack.json" },
   { import = "astrocommunity.pack.vue" },
   { import = "astrocommunity.pack.markdown" },
