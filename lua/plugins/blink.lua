@@ -8,6 +8,7 @@ return {
     opts = {
       keymap = {
         preset = "super-tab",
+        ["<C-h>"] = { "hide_documentation", "fallback" },
       },
       cmdline = {
         enabled = true,
@@ -42,7 +43,7 @@ return {
         },
         documentation = {
           auto_show = true,
-          auto_show_delay_ms = 500,
+          auto_show_delay_ms = 2000,
         },
         menu = {
           draw = {
