@@ -31,6 +31,20 @@ return {
       appearance = {
         nerd_font_variant = "mono",
       },
+      signature = {
+        enabled = true,
+        trigger = {
+          show_on_insert_on_trigger_character = true,
+        },
+        window = {
+          min_width = 10,
+          max_width = 60,
+          max_height = 10,
+          border = "rounded",
+          scrollbar = false,
+          show_documentation = false,
+        },
+      },
       completion = {
         keyword = {
           range = "full",
@@ -42,7 +56,7 @@ return {
           },
         },
         documentation = {
-          auto_show = false,
+          auto_show = true,
           auto_show_delay_ms = 2000,
         },
         menu = {

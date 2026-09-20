@@ -7,7 +7,7 @@ return {
     return utils.extend_tbl(opts, {
       lsp = {
         hover = { enabled = true },
-        signature = { enabled = true },
+        signature = { enabled = false },
         override = {
           ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
           ["vim.lsp.util.stylize_markdown"] = true,
@@ -39,9 +39,7 @@ return {
       opts = function(_, opts)
         local noice_opts = require("astrocore").plugin_opts "noice.nvim"
         if not opts.defaults then opts.defaults = {} end
-        if vim.tbl_get(noice_opts, "lsp", "hover", "enabled") ~= false then
-          opts.defaults.hover = false
-        end
+        if vim.tbl_get(noice_opts, "lsp", "hover", "enabled") ~= false then opts.defaults.hover = false end
         if vim.tbl_get(noice_opts, "lsp", "signature", "enabled") ~= false then
           opts.defaults.signature_help = false
           if not opts.features then opts.features = {} end
