@@ -49,4 +49,14 @@ return {
       require("toggleterm").setup(opts)
     end,
   },
+  {
+    "okuuva/auto-save.nvim",
+    opts = {
+      trigger_events = {
+        immediate_save = { "BufLeave", "QuitPre", "VimSuspend" }, -- 移除了 "FocusLost"
+        defer_save = { "InsertLeave", "TextChanged" },
+        cancel_deferred_save = { "InsertEnter" },
+      },
+    },
+  },
 }
