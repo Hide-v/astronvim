@@ -2,6 +2,7 @@ if not vim.g.neovide then return {} end
 
 local local_settings = {
   font_size = 14,
+  opacity = 0.85,
   scale_factor = 1.0,
 }
 
@@ -10,6 +11,7 @@ if vim.fn.filereadable(local_config_path) == 1 then
   local ok, local_cfg = pcall(dofile, local_config_path)
   if ok and type(local_cfg) == "table" then
     if local_cfg.font_size then local_settings.font_size = local_cfg.font_size end
+    if local_cfg.opacity then local_settings.opacity = local_cfg.opacity end
     if local_cfg.scale_factor then local_settings.scale_factor = local_cfg.scale_factor end
   end
 end
@@ -32,7 +34,7 @@ return {
 
           neovide_theme = "auto",
           -- 透明度与间距
-          neovide_opacity = 0.85,
+          neovide_opacity = local_settings.opacity,
           neovide_scale_factor = 1.0,
           neovide_padding_left = 5,
 
