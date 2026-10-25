@@ -46,6 +46,9 @@ return {
         },
       },
       completion = {
+        trigger = {
+          show_in_snippet = true,
+        },
         keyword = {
           range = "full",
         },
@@ -85,6 +88,18 @@ return {
       sources = {
         default = { "lsp", "path", "snippets", "buffer" },
         providers = {
+          lsp = {
+            override = {
+              -- clangd 在 `<` 上的 TriggerCharacter 请求会返回空列表且 isIncomplete=false，
+              -- blink 会把这个空列表缓存给同一 context 下更长的前缀，导致输入 vec 不再请求 LSP。
+              -- C/C++ 中不把 `<` 当作触发字符，等输入首字母时走 Invoked 请求。
+              get_trigger_characters = function(lsp_source)
+                local chars = lsp_source:get_trigger_characters()
+                if not vim.tbl_contains({ "c", "cpp", "objc", "objcpp", "cuda" }, vim.bo.filetype) then return chars end
+                return vim.tbl_filter(function(char) return char ~= "<" end, chars)
+              end,
+            },
+          },
           cmdline = {
             name = "cmdline",
             module = "blink.cmp.sources.cmdline",

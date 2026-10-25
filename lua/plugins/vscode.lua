@@ -12,6 +12,7 @@ local plugins = {
   "nvim-ts-autotag",
   "nvim-treesitter-textobjects",
   "flash.nvim",
+  "tabout.nvim",
 }
 
 local Config = require "lazy.core.config"
