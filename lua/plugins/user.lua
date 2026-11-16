@@ -2,6 +2,9 @@
 -- PLEASE REMOVE THE EXAMPLES YOU HAVE NO INTEREST IN BEFORE ENABLING THIS FILE
 -- Here are some examples:
 
+-- selene: allow(undefined_variable)
+-- @diagnostic disable: undefined-global
+-- @module 'snacks'
 ---@type LazySpec
 return {
   -- 格式化插件配置
@@ -58,5 +61,49 @@ return {
         cancel_deferred_save = { "InsertEnter" },
       },
     },
+  },
+  {
+    "folke/snacks.nvim",
+    opts = {
+      picker = {
+        sources = {
+          explorer = {
+            follow_file = true,
+          },
+        },
+      },
+      explorer = {
+        enabled = true,
+        tree = true,
+        watch = true,
+        replace_netrw = true,
+      },
+    },
+    keys = {
+      {
+        "<leader>e",
+        function()
+          local explorers = Snacks.picker.get { source = "explorer" }
+          if #explorers == 0 then
+            -- 没有打开 → 打开并定位当前文件
+            Snacks.explorer.reveal()
+          else
+            local explorer = explorers[1]
+            if explorer:is_focused() then
+              -- 已经在 explorer 上 → 关闭
+              explorer:close()
+            else
+              -- 打开了但没 focus → 切过去
+              explorer:focus()
+            end
+          end
+        end,
+        desc = "Explorer (reveal current file)",
+      },
+    },
+  },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    enabled = false,
   },
 }
