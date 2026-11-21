@@ -65,6 +65,9 @@ return {
   {
     "folke/snacks.nvim",
     opts = {
+      terminal = {
+        win = { position = "bottom", height = 20 },
+      },
       picker = {
         sources = {
           explorer = {

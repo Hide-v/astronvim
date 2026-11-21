@@ -11,7 +11,8 @@ return {
           ["<M-Down>"] = { "<Esc>:m +2<CR>gi", desc = "Move line down" },
         },
         n = {
-          ["<C-/>"] = { "<Cmd>ToggleTerm<CR>", desc = "Toggle Terminal" },
+          ["<C-/>"] = { function() require("snacks").terminal.toggle() end, desc = "Toggle Snacks Terminal" },
+          ["<C-_>"] = { function() require("snacks").terminal.toggle() end, desc = "Toggle Snacks Terminal" },
           ["<C-d>"] = { "10jzz" },
           ["<C-u>"] = { "10kzz" },
           ["<M-Up>"] = { ":m -2<CR>", desc = "Move line up" },
@@ -29,7 +30,8 @@ return {
           ["<M-Down>"] = { ":m '>+1<CR>gv", desc = "Move selected lines down" },
         },
         t = {
-          ["<C-/>"] = { "<Cmd>ToggleTerm<CR>", desc = "Toggle Terminal" },
+          ["<C-/>"] = { function() require("snacks").terminal.toggle() end, desc = "Toggle Snacks Terminal" },
+          ["<C-_>"] = { function() require("snacks").terminal.toggle() end, desc = "Toggle Snacks Terminal" },
         },
       },
     },
